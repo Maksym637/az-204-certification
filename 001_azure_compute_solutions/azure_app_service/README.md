@@ -1,7 +1,5 @@
 ## Explore Azure App Service
 
----
-
 ### General information
 
 Azure App Service is a fully managed platform designed to simplify the deployment and scaling of web apps, mobile back ends, and RESTful APIs.
@@ -85,9 +83,10 @@ There are two main deployment types for Azure App Service:
 
 ---
 
-#### Execution example:
+### Execution example:
 
 Resource configurations
+
 Basics:
 ![az-app-service-3](../azure_app_service/images/az-app-service-3.png)
 
@@ -101,7 +100,74 @@ App execution:
 
 ## Configure web app settings
 
-TODO
+### Application settings
+
+In App Service, app settings are variables passed as environment variables to the application code. When you add, remove, or edit app settings, App Service triggers an app restart.
+
+App settings are always encrypted when stored (_encrypted-at-rest_).
+
+---
+
+### Editing application settings in bulk
+
+To add or edit app settings in bulk, select the **Advanced edit** button. When finished, select **OK**. Don't forget to select Apply back in the Environment variables page. App settings have the following JSON formatting:
+
+```json
+[
+  {
+    "name": "<key-1>",
+    "value": "<value-1>",
+    "slotSetting": false
+  },
+  {
+    "name": "<key-2>",
+    "value": "<value-2>",
+    "slotSetting": false
+  },
+  ...
+]
+```
+
+---
+
+### Configure general settings
+
+A list of the currently available settings:
+
+- Stack settings (language and SDK versions).
+- Platform settings:
+  - Platform bitness.
+  - FTP state.
+  - HTTP version.
+  - Web sockets.
+  - Always On (Always On is required for continuous WebJobs or for WebJobs that are triggered using a CRON expression).
+  - ARR affinity.
+  - HTTPS Only.
+  - Minimum TLS version.
+- Debugging.
+- Incoming client certificates.
+
+---
+
+### Diagnostic logging
+
+![az-app-service-6](../azure_app_service/images/az-app-service-6.png)
+
+---
+
+### Configure security certificates
+
+The table below details the options you have for adding certificates in App Service:
+
+![az-app-service-7](../azure_app_service/images/az-app-service-7.png)
+
+---
+
+### Creating a free managed certificate
+
+To create custom TLS/SSL bindings or enable client certificates for your App Service app, your App Service plan must be in the _Basic_, _Standard_, _Premium_, or _Isolated_ tier.
+
+The free App Service managed certificate is a turn-key solution for securing your custom DNS name in App Service. It's a TLS/SSL server certificate fully managed by App Service and renewed continuously and automatically in six-month increments, 45 days before expiration. You create the certificate and bind it to a custom domain, and let App Service do the rest.
 
 ---
 
