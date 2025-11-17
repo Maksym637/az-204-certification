@@ -181,6 +181,7 @@ Azure App Service supports manual scaling, and two options for scaling out your 
 - Azure App Service _automatic scaling_. Automatic scaling makes scaling decisions for you based on the parameters that you select.
 
 **Autoscaling**: Autoscaling makes its decisions based on rules that you define. A rule specifies the threshold for a metric, and triggers an autoscale event when this threshold is crossed. Autoscaling can also deallocate resources when the workload lessens.
+
 **Automatic scaling** options:
 
 - You don't want to set up autoscale rules based on resource metrics.
@@ -205,18 +206,14 @@ _Scale out_ rules:
 1. If the HTTP queue length exceeds 10, scale out by 1
 2. If the CPU utilization exceeds 70%, scale out by 1
 
-\[
-\text{Scale Out} = RL1 \lor RL2
-\]
+$\text{Scale Out} = RL1 \lor RL2$
 
 _Scale in_ rules:
 
 1. If the HTTP queue length is zero, scale in by 1
 2. If the CPU utilization drops below 50%, scale in by 1
 
-\[
-\text{Scale In} = RL1 \land RL2
-\]
+$\text{Scale In} = RL1 \land RL2$
 
 ### Autoscale best practices
 
