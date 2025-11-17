@@ -173,12 +173,75 @@ The free App Service managed certificate is a turn-key solution for securing you
 
 ## Scale apps in Azure App Service
 
-TODO
+### Scale out options
+
+Azure App Service supports manual scaling, and two options for scaling out your web apps automatically:
+
+- Autoscaling with Azure _autoscale_. Autoscaling makes scaling decisions based on rules that you define.
+- Azure App Service _automatic scaling_. Automatic scaling makes scaling decisions for you based on the parameters that you select.
+
+**Autoscaling**: Autoscaling makes its decisions based on rules that you define. A rule specifies the threshold for a metric, and triggers an autoscale event when this threshold is crossed. Autoscaling can also deallocate resources when the workload lessens.
+**Automatic scaling** options:
+
+- You don't want to set up autoscale rules based on resource metrics.
+- You want your web apps within the same App Service Plan to scale differently and independently of each other.
+- Your web app is connected to a database or legacy system, which may not scale as fast as the web app. Scaling automatically allows you to set the maximum number of instances your App Service Plan can scale to. This setting helps the web app to not overwhelm the backend.
+
+### Autoscale factors
+
+Metrics for autoscale rules:
+
+- CPU Percentage.
+- Memory Percentage.
+- Disk Queue Length.
+- Http Queue Length (HTTP requests in the queue).
+- Data In.
+- Data Out.
+
+### Examples of autoscale rules
+
+_Scale out_ rules:
+
+1. If the HTTP queue length exceeds 10, scale out by 1
+2. If the CPU utilization exceeds 70%, scale out by 1
+
+\[
+\text{Scale Out} = RL1 \lor RL2
+\]
+
+_Scale in_ rules:
+
+1. If the HTTP queue length is zero, scale in by 1
+2. If the CPU utilization drops below 50%, scale in by 1
+
+\[
+\text{Scale In} = RL1 \land RL2
+\]
+
+### Autoscale best practices
+
+1. Ensure the maximum and minimum values are different and have an adequate margin between them.
+2. Choose the appropriate statistic for your diagnostics metric.
+3. Choose the thresholds carefully for all metric types.
+4. Considerations for scaling when multiple rules are configured in a profile.
+5. Always select a safe default instance count.
+6. Configure autoscale notifications.
 
 ---
 
 ## Explore Azure App Service deployment slots
 
-TODO
+### Swap deployment slots
+
+To swap a staging slot with the production slot, make sure that the production slot is always the target slot. This way, the swap operation doesn't affect your production app.
+
+There are two options:
+
+- Manually swapping deployment slots.
+- Automatic swap.
+
+### Route traffic
+
+By default, all client requests to the app's production URL (`http://<app_name>.azurewebsites.net`) are routed to the production slot. You can route a portion of the traffic to another slot. This feature is useful if you need user feedback for a new update, but you're not ready to release it to production.
 
 ---
