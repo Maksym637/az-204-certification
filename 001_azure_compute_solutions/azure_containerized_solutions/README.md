@@ -11,9 +11,13 @@ A package of an application and its dependencies:
 
 **Azure Container Registry** (ACR) is a managed registry service based on the open-source Docker Registry 2.0. Create and maintain Azure container registries to store and manage your container images and related artifacts. (There are other solutions like Docker Hub).
 
+---
+
 ### Service tiers
 
 ![az-containerized-solutions-1](../azure_containerized_solutions/images/az-containerized-solutions-1.png)
+
+---
 
 ### Storage capabilities
 
@@ -25,6 +29,8 @@ All Azure Container Registry tiers benefit from advanced Azure storage features 
 - Zone redundancy.
 - Scalable storage.
 
+---
+
 ### Build and manage containers with tasks
 
 ACR Tasks supports several scenarios to build and maintain container images and other artifacts:
@@ -35,6 +41,8 @@ ACR Tasks supports several scenarios to build and maintain container images and 
   - Trigger on base image update.
   - Trigger on a schedule.
 - _Multi-step task_ - Extend the single image build-and-push capability of ACR Tasks with multi-step, multi-container-based workflows.
+
+---
 
 ### Elements of a Dockerfile
 
@@ -55,6 +63,8 @@ EXPOSE 80
 CMD ["dotnet", "MyApp.dll"]
 ```
 
+---
+
 ### Execution example
 
 Creation of ACR:
@@ -68,5 +78,39 @@ The process of bulding and pushing an image:
 Execution:
 
 ![az-containerized-solutions-4](../azure_containerized_solutions/images/az-containerized-solutions-4.png)
+
+---
+
+## Run container images in Azure Container Instances
+
+### General information
+
+Azure Container Instances (ACI) is a great solution for any scenario that can operate in isolated containers, including simple applications, task automation, and build jobs. Here are some of the benefits:
+
+- Fast startup.
+- Container access.
+- Hypervisor-level security.
+- Customer data.
+- Custom sizes.
+- Persistent storage.
+- Linux and Windows.
+
+The following diagram shows an example of a container group that includes multiple containers:
+
+![az-containerized-solutions-5](../azure_containerized_solutions/images/az-containerized-solutions-5.png)
+
+---
+
+### Restart policy
+
+![az-containerized-solutions-6](../azure_containerized_solutions/images/az-containerized-solutions-6.png)
+
+---
+
+### Mount an Azure file share in ACI
+
+By default, Azure Container Instances are stateless. If the container crashes or stops, all of its state is lost. To persist state beyond the lifetime of the container, you must mount a volume from an external store.
+
+To mount multiple volumes in a container instance, you must deploy using an _Azure Resource Manager template_ or a _YAML file_.
 
 ---
