@@ -114,3 +114,9 @@ By default, Azure Container Instances are stateless. If the container crashes or
 To mount multiple volumes in a container instance, you must deploy using an _Azure Resource Manager template_ or a _YAML file_.
 
 ---
+
+## Implement containerized solutions
+
+TODO
+
+---
