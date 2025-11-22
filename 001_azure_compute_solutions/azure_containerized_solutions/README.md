@@ -115,8 +115,78 @@ To mount multiple volumes in a container instance, you must deploy using an _Azu
 
 ---
 
-## Implement containerized solutions
+## Implement containerized solutions (Azure Container Apps)
 
-TODO
+### General information
+
+Azure Container Apps is a serverless container service that supports microservice applications and robust autoscaling capabilities without the overhead of managing complex infrastructure.
+
+Common uses of Azure Container Apps include:
+
+- Deploying API endpoints.
+- Hosting background processing applications.
+- Handling event-driven processing.
+- Running microservices.
+
+---
+
+### Containers in Azure Container Apps
+
+![az-containerized-solutions-7](../azure_containerized_solutions/images/az-containerized-solutions-7.png)
+
+**!** Running multiple containers in a single container app is an advanced use case. In most situations where you want to run multiple containers, such as when implementing a microservice architecture, deploy each service as a separate container app.
+
+---
+
+### Implement authentication and authorization in Azure Container Apps
+
+Azure Container Apps provides built-in authentication and authorization features to secure your external ingress-enabled container app with minimal or no code. The built-in authentication feature for Container Apps can save you time and effort by providing out-of-the-box authentication with federated identity providers, allowing you to focus on the rest of your application.
+
+- Azure Container Apps provides access to various built-in authentication providers.
+- The built-in auth features don’t require any particular language, SDK, security expertise, or even any code that you have to write.
+
+**Feature architecture:**
+The authentication and authorization middleware component is a feature of the platform that runs as a sidecar container on each replica in your application. When enabled, every incoming HTTP request passes through the security layer before being handled by your application.
+
+![az-containerized-solutions-8](../azure_containerized_solutions/images/az-containerized-solutions-8.png)
+
+---
+
+### Manage revisions and secrets
+
+Azure Container Apps implements container app versioning by creating revisions. A revision is an immutable snapshot of a container app version. You can use revisions to release a new version of your app, or quickly revert to an earlier version of your app.
+
+You can list all revisions associated with your container app with the `az containerapp revision list` command:
+
+```bash
+az containerapp revision list \
+  --name <APPLICATION_NAME> \
+  --resource-group <RESOURCE_GROUP_NAME> \
+  -o table
+```
+
+Azure Container Apps allows your application to securely store sensitive configuration values. Once secrets are defined at the application level, secured values are available to container apps. Specifically, you can reference secured values inside scale rules.
+
+**!** Container Apps doesn't support Azure Key Vault integration. Instead, enable managed identity in the container app and use the Key Vault SDK in your app to access secrets.
+
+---
+
+### Dapr
+
+_The Distributed Application Runtime_ (Dapr) is a set of incrementally adoptable features that simplify the authoring of distributed, microservice-based applications. Dapr provides capabilities for enabling application intercommunication through messaging via pub/sub or reliable and secure service-to-service calls.
+
+Dapr APIs:
+
+![az-containerized-solutions-9](../azure_containerized_solutions/images/az-containerized-solutions-9.png)
+
+---
+
+## Useful information regarding ACI
+
+| Feature                       | Supported?                            |
+| ----------------------------- | ------------------------------------- |
+| Multiple containers per group | Yes (shared network and storage)      |
+| Persistent storage            | Yes (via Azure Files)                 |
+| Auto-scaling                  | No (use Azure Container Apps instead) |
 
 ---
