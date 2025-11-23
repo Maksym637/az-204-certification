@@ -43,3 +43,45 @@ Following is a summary of the benefits of the various hosting options:
 ![az-functions-3](../azure_functions/images/az-functions-3.png)
 
 ---
+
+## Develop Azure Functions
+
+### General information
+
+**!** All of the functions in a function app share the same pricing plan, deployment method, and runtime version.
+
+---
+
+### Local project files
+
+A Functions project directory contains the following files in the project root folder, regardless of language:
+
+- `host.json`.
+- `local.settings.json`.
+- Other files in the project depend on your language and specific functions.
+
+---
+
+### Triggers and Bindings
+
+A trigger defines how a function is invoked and a function must have exactly one trigger. Triggers have associated data, which is often provided as the payload of the function.
+
+...
+
+Binding to a function is a way of declaratively connecting another resource to the function; bindings might be connected as input bindings, output bindings, or both. Data from bindings is provided to the function as parameters.
+
+...
+
+All triggers and bindings have a direction property in the _function.json_ file:
+
+- `in` -> for triggers.
+- `in` and `out` -> for bindings.
+- `inout` -> for bindings.
+
+---
+
+### Example execution
+
+...
+
+---
