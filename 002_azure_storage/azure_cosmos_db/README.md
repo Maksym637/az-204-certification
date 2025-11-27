@@ -150,6 +150,8 @@ for user in users:
     container_client.create_item(user)
 ```
 
+![az-cosmos-db-7](../azure_cosmos_db/images/az-cosmos-db-7.png)
+
 **Read item (s)**:
 
 ```python
