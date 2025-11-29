@@ -121,3 +121,71 @@ if __name__ == "__main__":
 ![user-aa-3](../user_authentication_authorization/images/user-aa-3.png)
 
 ---
+
+## Shared access signature (SAS)
+
+### General information
+
+A shared access signature (SAS) is a signed URI that points to one or more storage resources and includes a token that contains a special set of query parameters.
+
+---
+
+### Types of shared access signatures
+
+- **User delegation SAS**: A user delegation SAS is secured with Microsoft Entra credentials and also by the permissions specified for the SAS. A user delegation SAS applies to Blob storage only.
+- **Service SAS**: A service SAS is secured with the storage account key. A service SAS delegates access to a resource in the following Azure Storage services: Blob storage, Queue storage, Table storage, or Azure Files.
+- **Account SAS**: An account SAS is secured with the storage account key. An account SAS delegates access to resources in one or more of the storage services. All of the operations available via a service or user delegation SAS are also available via an account SAS.
+
+Example of the URI with a SAS token:
+
+`https://medicalrecords.blob.core.windows.net/patient-images/patient-116139-nq8z7f.jpg?sp=r&st=2020-01-20T11:42:32Z&se=2020-01-20T19:42:32Z&spr=https&sv=2019-02-02&sr=b&sig=SrW1HZ5Nb6MbRzTbXCaPm%2BJiSEn15tC91Y4umMPwVZs%3D`
+
+The SAS token itself is made up of several components:
+
+![user-aa-4](../user_authentication_authorization/images/user-aa-4.png)
+
+---
+
+## Microsoft Graph
+
+### General information
+
+Microsoft Graph is the gateway to data and intelligence in Microsoft 365. It provides a unified programmability model that you can use to access the tremendous amount of data in Microsoft 365, Windows 10, and Enterprise Mobility + Security.
+
+Microsoft Graph Overview:
+
+- Unified API endpoint `https://graph.microsoft.com`.
+- Allows access to user, group, mail, calendar, Teams, and more data.
+- Requires proper OAuth 2.0 scopes.
+
+Common Graph endpoints:
+
+| Resource | Endpoint                       |
+| -------- | ------------------------------ |
+| Users    | `/v1.0/users`                  |
+| Groups   | `/v1.0/groups`                 |
+| Mail     | `/v1.0/me/messages`            |
+| Files    | `/v1.0/me/drive/root/children` |
+
+---
+
+### Call a REST API method
+
+To read from or write to a resource such as a user or an email message, construct a request that looks like the following sample:
+
+```bash
+{HTTP method} https://graph.microsoft.com/{version}/{resource}?{query-parameters}
+```
+
+---
+
+### Best practices to Microsoft Graph
+
+Apply the following best practices for consent and authorization in your app:
+
+- **Use least privilege**.
+- **Use the correct permission type based on scenarios**.
+- **Consider the end user and admin experience**.
+- **Consider multi-tenant applications**.
+
+---
