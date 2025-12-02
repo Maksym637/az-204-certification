@@ -180,3 +180,53 @@ Console app execution:
 ![az-secure-solutions-2](../secure_azure_solutions/images/az-secure-solutions-2.png)
 
 ---
+
+## Managed identities
+
+### Types of managed identities
+
+There are two types of managed identities:
+
+- A **system-assigned managed identity** is enabled directly on an Azure service instance. When the identity is enabled, Azure creates an identity for the instance in the Microsoft Entra tenant trusted by the subscription of the instance. After the identity is created, the credentials are provisioned onto the instance. The lifecycle of a system-assigned identity is directly tied to the Azure service instance that it's enabled on. If the instance is deleted, Azure automatically cleans up the credentials and the identity in Microsoft Entra ID.
+- A **user-assigned managed identity** is created as a standalone Azure resource. Through a create process, Azure creates an identity in the Microsoft Entra tenant that's trusted by the subscription in use. After the identity is created, the identity can be assigned to one or more Azure service instances. The lifecycle of a user-assigned identity is managed separately from the lifecycle of the Azure service instances to which it's assigned.
+
+![az-secure-solutions-3](../secure_azure_solutions/images/az-secure-solutions-3.png)
+
+---
+
+### Configure managed identities
+
+Enable system-assigned managed identity during creation of an Azure virtual machine:
+
+```bash
+az vm create --resource-group myResourceGroup \
+    --name myVM --image win2016datacenter \
+    --generate-ssh-keys \
+    --assign-identity \
+    --role contributor \
+    --scope mySubscription \
+    --admin-username azureuser \
+    --admin-password myPassword12
+```
+
+Assign a user-assigned managed identity during the creation of an Azure virtual machine:
+
+```bash
+az vm create --resource-group <RESOURCE GROUP> \
+    --name <VM NAME> --image Ubuntu2204 \
+    --admin-username <USER NAME> \
+    --admin-password <PASSWORD> \
+    --assign-identity <USER ASSIGNED IDENTITY NAME> \
+    --role <ROLE> \
+    --scope <SUBSCRIPTION>
+```
+
+---
+
+## Azure App Configuration
+
+### General information
+
+TODO
+
+---
