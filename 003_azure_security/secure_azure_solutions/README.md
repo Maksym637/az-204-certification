@@ -227,6 +227,28 @@ az vm create --resource-group <RESOURCE GROUP> \
 
 ### General information
 
-TODO
+Azure App Configuration provides a service to centrally manage application settings and feature flags. Modern programs, especially programs running in a cloud, generally have many components that are distributed in nature. Spreading configuration settings across these components can lead to hard-to-troubleshoot errors during an application deployment. Use App Configuration to store all the settings for your application and secure their accesses in one place.
+
+---
+
+### Paired keys and values
+
+Azure App Configuration stores configuration data as key-value pairs.
+
+Example of label keys:
+
+```text
+Key = AppName:DbEndpoint & Label = Test
+Key = AppName:DbEndpoint & Label = Staging
+Key = AppName:DbEndpoint & Label = Production
+```
+
+---
+
+### Manage application features
+
+Feature management is a modern software-development practice that decouples feature release from code deployment and enables quick changes to feature availability on demand. It uses a technique called feature flags (also known as feature toggles, feature switches, and so on) to dynamically administer a feature's lifecycle.
+
+**!** Azure App Configuration is designed to be a centralized repository for feature flags. You can use it to define different kinds of feature flags and manipulate their states quickly and confidently. You can then use the App Configuration libraries for various programming language frameworks to easily access these feature flags from your application.
 
 ---
