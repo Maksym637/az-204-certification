@@ -64,10 +64,15 @@ The configuration is divided into `inbound`, `backend`, `outbound`, and `on-erro
 ### Advanced policies
 
 **Control flow** - Conditionally applies policy statements based on the results of the evaluation of Boolean expressions (`choose`, `when`, and `otherwise`).
+
 **Forward request** - Forwards the request to the backend service (`forward-request`).
+
 **Limit concurrency** - Prevents enclosed policies from executing by more than the specified number of requests at a time (`limit-concurrency`).
+
 **Log to Event Hubs** - Sends messages in the specified format to an event hub defined by a Logger entity (`log-to-eventhub`).
+
 **Mock response** - Aborts pipeline execution and returns a mocked response directly to the caller (`mock-response`).
+
 **Retry** - Retries execution of the enclosed policy statements, if and until the condition is met. Execution repeats at the specified time intervals and up to the specified retry count (`retry`).
 
 ---
